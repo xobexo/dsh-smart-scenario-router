@@ -52,13 +52,13 @@ npx -y @deepseek-ai/dsh plugin --profile web list
 
 ## 更新
 
-从 GitHub 更新到最新代码：
+更新已经安装的插件：
 
 ```powershell
-npx -y @deepseek-ai/dsh plugin --profile web update github:xobexo/dsh-smart-scenario-router
+npx -y @deepseek-ai/dsh plugin --profile web update dsh-smart-scenario-router
 ```
 
-如果需要重新安装当前版本，也可以再次执行安装命令：
+如果是从 GitHub 安装的旧版本，也可以再次执行安装命令：
 
 ```powershell
 npx -y @deepseek-ai/dsh plugin --profile web add github:xobexo/dsh-smart-scenario-router
