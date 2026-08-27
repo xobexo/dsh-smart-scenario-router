@@ -2,6 +2,12 @@
   "name": "dsh-smart-scenario-router",
   "version": "0.1.0",
   "description": "Persistent DeepSeek Harness scenario router with domestic-model priority, fallback routing, and Web UI settings.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xobexo/dsh-smart-scenario-router.git"
+  },
+  "homepage": "https://github.com/xobexo/dsh-smart-scenario-router",
+  "license": "MIT",
   "type": "module",
   "main": "index.js",
   "exports": {
