@@ -1,6 +1,6 @@
 # Persistent bundle patch for dsh-smart-scenario-router.
 # Installed with:
-#   dsh plugin --profile web add link:C:\Users\curry\Desktop\work\dsh-smart-scenario-router
+#   dsh plugin --profile web add github:xobexo/dsh-smart-scenario-router
 - insert:
     - id: dsh-smart-scenario-router
       name: "dsh-smart-scenario-router"
