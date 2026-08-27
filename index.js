@@ -72,11 +72,11 @@ function userText(messages) {
 
 function classify(messages) {
   const input = userText(messages)
-  if (input.image || /图片|图像|截图|照片|图文|视觉|看图/.test(input.text)) return { tag: 'multimodal', confidence: 0.98, judged: false }
+  if (input.image || /图片|图像|截图|照片|图文|视觉|看图|识图|OCR|扫描件|表格图片/.test(input.text)) return { tag: 'multimodal', confidence: 0.98, judged: false }
   if (input.text.length > 12000) return { tag: 'long_context', confidence: 0.96, judged: false }
   const rules = [
     ['project_planning', ['架构', '项目拆解', '技术方案', '系统设计', '模块拆分', '里程碑', '规划']],
-    ['coding', ['代码', '编写', '调试', 'bug', '报错', '函数', '接口', 'typescript', 'javascript', 'python', '重构']],
+    ['coding', ['代码', '编写', '调试', 'bug', '报错', '函数', '接口', 'typescript', 'javascript', 'python', '重构', '前端', '后端', '数据库', '测试用例']],
     ['reasoning', ['推理', '科研', '论文', '证明', '分析原因', 'agent', '实验设计', '复杂']],
     ['fast', ['批量', '抽取', '高并发', '极速', '快速分类', '大量文本']],
     ['multimodal', ['图片', '图像', '截图', '照片', '图文', '视觉', '看图']],
