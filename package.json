@@ -1,0 +1,32 @@
+{
+  "name": "dsh-smart-scenario-router",
+  "version": "0.1.0",
+  "description": "Persistent DeepSeek Harness scenario router with domestic-model priority, fallback routing, and Web UI settings.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "engines": { "dsh": ">=0.1.1-rc.1" },
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-settings": "0.1.1-rc.2",
+    "@deepseek-ai/schemastery": "3.18.1"
+  },
+  "peerDependencies": {
+    "react": "18.3.1"
+  },
+  "files": ["index.js", "client.js", "cordis.patch.yml", "package.json"]
+}
