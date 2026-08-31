@@ -77,11 +77,13 @@ npx -y @deepseek-ai/dsh plugin --profile web remove dsh-smart-scenario-router
 打开 dsh Web 界面的设置页，找到“智能场景路由”。这里可以：
 
 - 启用或停用模型池中的模型。
-- 为模型填写明确的 Provider。
+- 所有模型都通过下拉框从 dsh「设置 → 模型」中已配置的模型中选择，不需要手输模型名称。
+- 为模型填写明确的 Provider（留空时自动解析）。
 - 查看每个模型对应的场景和优先级。
-- 查看固定的场景候选链和裁判模型。
+- 编辑每个场景的候选链（模型下拉框 + 追加 / 移除候选，顺序即回退顺序）。
+- 选择裁判模型（留空为自动，优先挑选可用的 Flash 模型）。
 
-Provider 留空时，插件会尝试从 dsh 已注册的模型目录中自动解析。模型名称必须与当前 dsh 中实际注册的模型名称一致；如果模型未注册、Provider 不可用或模型无法解析，插件会继续尝试候选链中的下一个模型。
+首次使用时，插件会把最开始的规则内容（默认模型池 + 每个场景的候选链）自动写入配置，不需要手动添加：默认模型在 dsh「设置 → 模型」里不存在时，会自动替换为同系列（deepseek / glm / qwen / gpt）的真实配置模型并填入自动解析的 Provider；连同系列都没有时才保留原名称（设置页标注“未配置”，路由时自动跳过）。模型名称按 Harness 已配置的原值传递；如果模型未注册、Provider 不可用或模型无法解析，插件会继续尝试候选链中的下一个模型。
 
 插件不会保存 API Key。Provider 的认证信息仍由 dsh 自己管理。
 
@@ -97,14 +99,14 @@ Provider 留空时，插件会尝试从 dsh 已注册的模型目录中自动解
 | `multimodal` | `qwen3.8-max` → `qwen3.7-max` → `gpt-5.6-sol` |
 | `long_context` | `deepseek-v4-pro-0813` → `qwen3.8-max` → `gpt-5.6-sol` |
 
-这些名称是默认候选值，不代表插件会自动提供模型或 Provider。使用前请确认它们已经在你的 dsh 配置中可用，或者在设置页调整模型池和 Provider。
+这些名称是默认候选值，不代表插件会自动提供模型或 Provider。首次使用时，插件会把上表中的规则内容自动写入：dsh「设置 → 模型」中存在的模型原样保留并自动解析 Provider，不存在的默认模型自动替换为同系列的真实配置模型（找不到时保留原名称并在路由时跳过），无需手动添加；也可以在设置页用下拉框调整。
 
 ## 工作方式
 
 1. 插件读取当前会话中的用户消息。
 2. 如果包含图片，或消息明确涉及图片内容，路由到 `multimodal`。
 3. 如果文本很长，路由到 `long_context`。
-4. 其他消息根据关键词匹配场景；置信度低于阈值时，调用裁判模型再次判断。
+4. 其他消息根据关键词匹配场景；置信度低于阈值时，调用裁判模型再次判断。裁判模型可在设置页选择，留空时自动从已配置模型中挑选。
 5. 插件检查候选模型是否可用，并选择第一个可用模型。
 6. 请求失败时，继续尝试当前场景候选链中的下一个模型。
 
@@ -125,7 +127,7 @@ npx -y @deepseek-ai/dsh plugin --profile web add C:\path\to\dsh-smart-scenario-r
 cd C:\path\to\dsh-smart-scenario-router
 pnpm install
 pnpm pack
-npx -y @deepseek-ai/dsh plugin --profile web add C:\path\to\dsh-smart-scenario-router\dsh-smart-scenario-router-0.1.0.tgz
+npx -y @deepseek-ai/dsh plugin --profile web add C:\path\to\dsh-smart-scenario-router\dsh-smart-scenario-router-0.2.0.tgz
 ```
 
 打包内容由 `package.json` 的 `files` 字段控制，不需要提交 `node_modules`。

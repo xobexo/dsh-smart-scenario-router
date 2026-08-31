@@ -39,6 +39,8 @@ const RouterSettings = z.object({
     enabled: z.boolean(),
     provider: z.string(),
   })).default(DEFAULT_POOL),
+  routes: z.dict(z.array(z.string())).default(ROUTES),
+  judgeModel: z.string().default(''),
 })
 
 export const inject = ['llm', 'settings', 'webServer', 'agentDefaultModel']
@@ -99,10 +101,23 @@ function source(model) { return model.indexOf('gpt-') === 0 ? '备用' : '国产
 export function apply(ctx, config) {
   if (config && config.enabled === false) return
   const settings = ctx.settings.register(ROUTER_NS, RouterSettings, { base: { pool: DEFAULT_POOL } })
+  const resolved = settings.get()
+  let customized = false
+  try {
+    const descriptor = (ctx.settings.describe ? ctx.settings.describe() : []).find((d) => d.ns === ROUTER_NS)
+    const userPool = descriptor && descriptor.user && Array.isArray(descriptor.user.pool) ? descriptor.user.pool : null
+    // 空池不算已定制：用户层可能是旧版本误存的空池，应视为未配置并自动填充初始规则。
+    customized = Boolean(userPool && userPool.length > 0)
+  } catch (_) {}
   const state = {
-    pool: settings.get().pool.map((item) => ({ ...item })),
+    pool: resolved.pool.map((item) => ({ ...item })),
+    routes: Object.fromEntries(Object.entries(resolved.routes || {}).map(([tag, chain]) => [tag, chain.slice()])),
+    judgeModel: resolved.judgeModel || '',
     providers: Object.create(null),
     available: Object.create(null),
+    models: [],
+    customized,
+    converged: false,
     override: null,
     latest: { tag: 'daily', label: LABELS.daily, model: 'deepseek-v4-flash-0731', source: '国产', confidence: 0, judged: false },
     sessions: new Map(),
@@ -117,8 +132,84 @@ export function apply(ctx, config) {
     return Boolean(current && config && config.model === current.model && (!current.provider || !config.provider || config.provider === current.provider))
   }
 
+  function rememberModel(id, provider) {
+    if (!id || !provider) return
+    if (!(id in state.providers)) state.providers[id] = provider
+    state.available[provider + ':' + id] = true
+    if (!state.models.some((m) => m.id === id)) state.models.push({ id, provider, source: source(id) })
+  }
+
+  function scanSettingsModels() {
+    try {
+      const deepseek = ctx.settings.get ? ctx.settings.get('llm-deepseek') : null
+      for (const model of (deepseek && deepseek.models) || []) {
+        if (model && model.id) rememberModel(model.id, 'deepseek-official')
+      }
+    } catch (_) {}
+    try {
+      const pi = ctx.settings.get ? ctx.settings.get('llm-pi-ai') : null
+      const providers = (pi && pi.providers) || {}
+      for (const [provider, profile] of Object.entries(providers)) {
+        if (!profile || typeof profile !== 'object') continue
+        for (const model of (profile.models) || []) if (model && model.id) rememberModel(model.id, provider)
+        for (const id of Object.keys(profile.modelOverrides || {})) rememberModel(id, provider)
+      }
+    } catch (_) {}
+  }
+
+  function modelFamily(id) {
+    const match = /^(deepseek|glm|qwen|gpt)/i.exec(id || '')
+    return match ? match[1].toLowerCase() : ''
+  }
+
+  function themeOf(id) {
+    // 去掉末尾的日期/版本编号后缀（如 deepseek-v4-pro-0813 -> deepseek-v4-pro）。
+    return String(id || '').replace(/-\d+$/, '')
+  }
+
+  function resolveDefaultModel(id) {
+    // 1) 配置里有原名 -> 直接用原名。
+    if (state.models.some((m) => m.id === id)) return id
+    // 2) 按同系列（deepseek/glm/qwen/gpt）+ 主题名精确匹配真实配置的模型。
+    const family = modelFamily(id)
+    const theme = themeOf(id)
+    const themeMatch = state.models.find((m) => modelFamily(m.id) === family && (m.id === theme || m.id.includes(theme) || theme.includes(m.id)))
+    if (themeMatch) return themeMatch.id
+    // 3) 同系列任意真实模型兜底。
+    const fallback = state.models.find((m) => modelFamily(m.id) === family)
+    return fallback ? fallback.id : id
+  }
+
+  function converge() {
+    if (state.customized || state.converged) return false
+    state.converged = true
+    // 首次使用把最开始的规则内容原样写入：不需要手动从下拉框添加。
+    const pool = []
+    for (const item of DEFAULT_POOL) {
+      const id = resolveDefaultModel(item.id)
+      const existing = pool.find((entry) => entry.id === id)
+      if (existing) { if (!existing.provider) existing.provider = state.providers[id] || ''; continue }
+      pool.push({ id, role: item.role, enabled: item.enabled, provider: item.provider || state.providers[id] || '' })
+    }
+    state.pool = pool
+    const routes = {}
+    for (const [tag, chain] of Object.entries(ROUTES)) {
+      routes[tag] = chain.map((id) => resolveDefaultModel(id))
+    }
+    state.routes = routes
+    return true
+  }
+
   async function discover() {
+    scanSettingsModels()
+    if (converge()) {
+      // 首次收敛自动写回设置，清掉旧版本可能残留的空池 / 残缺候选链。
+      try {
+        await settings.replace({ pool: state.pool, routes: state.routes, judgeModel: state.judgeModel || '' })
+      } catch (_) {}
+    }
     if (state.loaded) return
+    state.loaded = true
     try {
       for (const info of llm.listProviders() || []) {
         const provider = info && info.id
@@ -128,15 +219,26 @@ export function apply(ctx, config) {
             if (!model || !model.id) continue
             state.providers[model.id] = provider
             state.available[provider + ':' + model.id] = true
+            const entry = state.models.find((m) => m.id === model.id)
+            if (entry) { if (!entry.provider) entry.provider = provider }
+            else state.models.push({ id: model.id, provider, source: source(model.id) })
           }
         } catch (_) {}
       }
     } catch (_) {}
-    state.loaded = true
+    converge()
+  }
+
+  function resolveJudgeId() {
+    if (state.judgeModel) return state.judgeModel
+    const flash = state.models.find((m) => m.id.toLowerCase().includes('flash'))
+    if (flash) return flash.id
+    return state.models.length ? state.models[0].id : ''
   }
 
   async function judge(messages, fallbackProvider, signal) {
-    const model = 'deepseek-v4-flash-0731'
+    const model = resolveJudgeId()
+    if (!model) return null
     const provider = state.providers[model] || fallbackProvider
     if (!provider) return null
     try {
@@ -153,12 +255,15 @@ export function apply(ctx, config) {
   function view() {
     return {
       pool: state.pool.map((item) => ({ ...item })),
-      routes: Object.fromEntries(Object.entries(ROUTES).map(([tag, chain]) => [tag, chain.slice()])),
+      routes: Object.fromEntries(Object.entries(state.routes).map(([tag, chain]) => [tag, chain.slice()])),
       latest: { ...state.latest },
       override: state.override,
-      judgeModel: 'deepseek-v4-flash-0731',
+      judgeModel: state.judgeModel,
+      judgeResolved: resolveJudgeId(),
       threshold: 0.7,
+      models: state.models.map((m) => ({ ...m })),
       providers: Object.keys(state.providers).sort(),
+      customized: state.customized,
     }
   }
 
@@ -175,8 +280,9 @@ export function apply(ctx, config) {
 
   async function candidates(tag, fallbackProvider, signal) {
     const result = []
-    const models = ROUTES[tag] || ROUTES.daily
-    for (const model of models) {
+    const chain = (state.routes && state.routes[tag]) || []
+    for (const model of chain) {
+      if (!model) continue
       const item = state.pool.find((candidate) => candidate.id === model)
       if (item && !item.enabled) continue
       const provider = (item && item.provider) || state.providers[model] || fallbackProvider
@@ -201,7 +307,10 @@ export function apply(ctx, config) {
   routes.push(ctx.webServer.register({
     kind: 'exact',
     path: '/smart-scenario-router/state',
-    handler: (_req, res) => writeJson(res, 200, view()),
+    handler: async (_req, res) => {
+      await discover()
+      writeJson(res, 200, view())
+    },
   }))
   routes.push(ctx.webServer.register({
     kind: 'exact',
@@ -210,14 +319,31 @@ export function apply(ctx, config) {
       if (req.method !== 'POST') return writeJson(res, 405, { error: 'method-not-allowed' })
       try {
         const args = await readJson(req)
-        const updates = args && Array.isArray(args.pool) ? args.pool : []
-        for (const update of updates) {
-          const item = state.pool.find((candidate) => candidate.id === (update && update.id))
-          if (!item) continue
-          if (typeof update.enabled === 'boolean') item.enabled = update.enabled
-          if (typeof update.provider === 'string') item.provider = update.provider.trim()
+        const pool = []
+        for (const raw of Array.isArray(args.pool) ? args.pool : []) {
+          if (!raw || typeof raw.id !== 'string') continue
+          const id = raw.id.trim()
+          if (!id || pool.some((item) => item.id === id)) continue
+          const existing = state.pool.find((item) => item.id === id)
+          pool.push({
+            id,
+            role: typeof raw.role === 'string' && raw.role.trim() ? raw.role.trim() : (existing ? existing.role : '自定义'),
+            enabled: typeof raw.enabled === 'boolean' ? raw.enabled : true,
+            provider: typeof raw.provider === 'string' ? raw.provider.trim() : '',
+          })
         }
-        await settings.replace({ pool: state.pool })
+        const routesNext = {}
+        for (const tag of Object.keys(ROUTES)) {
+          const chain = args.routes && Array.isArray(args.routes[tag]) ? args.routes[tag] : (state.routes[tag] || [])
+          routesNext[tag] = chain.filter((id) => typeof id === 'string').map((id) => id.trim())
+        }
+        const judgeModel = typeof args.judgeModel === 'string' ? args.judgeModel.trim() : state.judgeModel
+        state.pool = pool
+        state.routes = routesNext
+        state.judgeModel = judgeModel
+        state.customized = true
+        state.converged = true
+        await settings.replace({ pool, routes: routesNext, judgeModel })
         return writeJson(res, 200, view())
       } catch (error) {
         return writeJson(res, 400, { error: error instanceof Error ? error.message : String(error) })
