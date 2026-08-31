@@ -1,0 +1,52 @@
+0 verbose cli C:\nvm4w\nodejs\node.exe C:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.8
+2 info using node@v22.23.2
+3 silly config load:file:C:\ProgramData\nvm\v22.23.2\node_modules\npm\npmrc
+4 silly config load:file:D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\pwtool\.npmrc
+5 silly config load:file:C:\Users\curry\.npmrc
+6 silly config load:file:D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\pwtool\etc\npmrc
+7 verbose title npm install @playwright/cli
+8 verbose argv "install" "--prefix" "D:\\workspace\\code\\harness\\dsh-smart-scenario-router\\.tmp-ui\\pwtool" "@playwright/cli" "--no-audit" "--no-fund" "--cache" "D:\\workspace\\code\\harness\\dsh-smart-scenario-router\\.tmp-ui\\.npm-cache"
+9 verbose logfile logs-max:10 dir:D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\.npm-cache\_logs\2026-08-31T07_12_07_917Z-
+10 verbose logfile D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\.npm-cache\_logs\2026-08-31T07_12_07_917Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest @playwright/cli@*
+15 silly packumentCache full:https://registry.npmmirror.com/@playwright%2fcli cache-miss
+16 http cache https://registry.npmmirror.com/@playwright%2fcli 14ms (cache hit)
+17 silly packumentCache full:https://registry.npmmirror.com/@playwright%2fcli set size:81253 disposed:false
+18 silly placeDep ROOT @playwright/cli@0.1.18 OK for:  want: *
+19 silly fetch manifest playwright@1.63.0-alpha-2026-08-05
+20 silly packumentCache full:https://registry.npmmirror.com/playwright cache-miss
+21 silly fetch manifest playwright-core@1.63.0-alpha-2026-08-05
+22 silly packumentCache full:https://registry.npmmirror.com/playwright-core cache-miss
+23 http cache https://registry.npmmirror.com/playwright-core 34ms (cache hit)
+24 silly packumentCache full:https://registry.npmmirror.com/playwright-core set size:15711675 disposed:false
+25 http cache https://registry.npmmirror.com/playwright 135ms (cache hit)
+26 silly packumentCache full:https://registry.npmmirror.com/playwright set size:13808423 disposed:false
+27 silly placeDep ROOT playwright@1.63.0-alpha-2026-08-05 OK for: @playwright/cli@0.1.18 want: 1.63.0-alpha-2026-08-05
+28 silly placeDep ROOT playwright-core@1.63.0-alpha-2026-08-05 OK for: @playwright/cli@0.1.18 want: 1.63.0-alpha-2026-08-05
+29 silly fetch manifest fsevents@2.3.2
+30 silly packumentCache full:https://registry.npmmirror.com/fsevents cache-miss
+31 http cache https://registry.npmmirror.com/fsevents 4ms (cache hit)
+32 silly packumentCache full:https://registry.npmmirror.com/fsevents set size:122258 disposed:false
+33 silly placeDep ROOT fsevents@2.3.2 OK for: playwright@1.63.0-alpha-2026-08-05 want: 2.3.2
+34 silly reify moves {}
+35 verbose reify failed optional dependency D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\pwtool\node_modules\fsevents
+36 silly reify mark deleted [
+36 silly reify   'D:\\workspace\\code\\harness\\dsh-smart-scenario-router\\.tmp-ui\\pwtool\\node_modules\\fsevents'
+36 silly reify ]
+37 http cache playwright-core@https://registry.npmmirror.com/playwright-core/-/playwright-core-1.63.0-alpha-2026-08-05.tgz 0ms (cache hit)
+38 http cache @playwright/cli@https://registry.npmmirror.com/@playwright/cli/-/cli-0.1.18.tgz 0ms (cache hit)
+39 http cache playwright@https://registry.npmmirror.com/playwright/-/playwright-1.63.0-alpha-2026-08-05.tgz 0ms (cache hit)
+40 silly ADD
+41 silly ADD node_modules/playwright-core
+42 silly ADD node_modules/playwright
+43 silly ADD node_modules/@playwright/cli
+44 verbose cwd D:\workspace\code\harness\dsh-smart-scenario-router
+45 verbose os Windows_NT 10.0.26200
+46 verbose node v22.23.2
+47 verbose npm  v10.9.8
+48 verbose exit 0
+49 info ok

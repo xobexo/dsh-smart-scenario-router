@@ -1,0 +1,100 @@
+0 verbose cli C:\nvm4w\nodejs\node.exe C:\ProgramData\nvm\v22.23.2\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.8
+2 info using node@v22.23.2
+3 silly config load:file:C:\ProgramData\nvm\v22.23.2\node_modules\npm\npmrc
+4 silly config load:file:D:\workspace\code\harness\dsh-smart-scenario-router\.npmrc
+5 silly config load:file:C:\Users\curry\.npmrc
+6 silly config load:file:C:\nvm4w\nodejs\etc\npmrc
+7 verbose title npm exec @playwright/cli playwright-cli --help
+8 verbose argv "exec" "--cache" "D:\\workspace\\code\\harness\\dsh-smart-scenario-router\\.tmp-ui\\.npm-cache" "--yes" "--" "@playwright/cli" "playwright-cli" "--help"
+9 verbose logfile logs-max:10 dir:D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\.npm-cache\_logs\2026-08-31T07_11_21_401Z-
+10 verbose logfile D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\.npm-cache\_logs\2026-08-31T07_11_21_401Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 http fetch GET 200 https://registry.npmmirror.com/@playwright%2fcli 107ms (cache miss)
+14 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+15 http fetch GET 200 https://registry.npmmirror.com/npm 305ms
+16 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+17 silly idealTree buildDeps
+18 silly fetch manifest @playwright/cli@0.1.18
+19 silly packumentCache full:https://registry.npmmirror.com/@playwright%2fcli cache-miss
+20 http fetch GET 200 https://registry.npmmirror.com/@playwright%2fcli 61ms (cache miss)
+21 silly packumentCache full:https://registry.npmmirror.com/@playwright%2fcli set size:20213 disposed:false
+22 silly placeDep ROOT @playwright/cli@0.1.18 OK for:  want: 0.1.18
+23 silly fetch manifest playwright@1.63.0-alpha-2026-08-05
+24 silly packumentCache full:https://registry.npmmirror.com/playwright cache-miss
+25 silly fetch manifest playwright-core@1.63.0-alpha-2026-08-05
+26 silly packumentCache full:https://registry.npmmirror.com/playwright-core cache-miss
+27 http fetch GET 200 https://registry.npmmirror.com/playwright-core 278ms (cache miss)
+28 silly packumentCache full:https://registry.npmmirror.com/playwright-core set size:2348670 disposed:false
+29 http fetch GET 200 https://registry.npmmirror.com/playwright 491ms (cache miss)
+30 silly packumentCache full:https://registry.npmmirror.com/playwright set size:2307738 disposed:false
+31 silly placeDep ROOT playwright@1.63.0-alpha-2026-08-05 OK for: @playwright/cli@0.1.18 want: 1.63.0-alpha-2026-08-05
+32 silly placeDep ROOT playwright-core@1.63.0-alpha-2026-08-05 OK for: @playwright/cli@0.1.18 want: 1.63.0-alpha-2026-08-05
+33 silly fetch manifest fsevents@2.3.2
+34 silly packumentCache full:https://registry.npmmirror.com/fsevents cache-miss
+35 http fetch GET 200 https://registry.npmmirror.com/fsevents 37ms (cache miss)
+36 silly packumentCache full:https://registry.npmmirror.com/fsevents set size:16344 disposed:false
+37 silly placeDep ROOT fsevents@2.3.2 OK for: playwright@1.63.0-alpha-2026-08-05 want: 2.3.2
+38 silly reify moves {}
+39 silly audit bulk request {
+39 silly audit   '@playwright/cli': [ '0.1.18' ],
+39 silly audit   playwright: [ '1.63.0-alpha-2026-08-05' ],
+39 silly audit   'playwright-core': [ '1.63.0-alpha-2026-08-05' ],
+39 silly audit   fsevents: [ '2.3.2' ]
+39 silly audit }
+40 verbose reify failed optional dependency D:\workspace\code\harness\dsh-smart-scenario-router\.tmp-ui\.npm-cache\_npx\31e32ef8478fbf80\node_modules\fsevents
+41 silly reify mark deleted [
+41 silly reify   'D:\\workspace\\code\\harness\\dsh-smart-scenario-router\\.tmp-ui\\.npm-cache\\_npx\\31e32ef8478fbf80\\node_modules\\fsevents'
+41 silly reify ]
+42 http cache playwright-core@https://registry.npmmirror.com/playwright-core/-/playwright-core-1.63.0-alpha-2026-08-05.tgz 1ms (cache hit)
+43 http cache @playwright/cli@https://registry.npmmirror.com/@playwright/cli/-/cli-0.1.18.tgz 1ms (cache hit)
+44 silly tarball no local data for playwright-core@https://registry.npmmirror.com/playwright-core/-/playwright-core-1.63.0-alpha-2026-08-05.tgz. Extracting by manifest.
+45 silly tarball no local data for @playwright/cli@https://registry.npmmirror.com/@playwright/cli/-/cli-0.1.18.tgz. Extracting by manifest.
+46 http cache playwright@https://registry.npmmirror.com/playwright/-/playwright-1.63.0-alpha-2026-08-05.tgz 0ms (cache hit)
+47 silly tarball no local data for playwright@https://registry.npmmirror.com/playwright/-/playwright-1.63.0-alpha-2026-08-05.tgz. Extracting by manifest.
+48 http fetch POST 404 https://registry.npmmirror.com/-/npm/v1/security/advisories/bulk 31ms
+49 silly audit bulk request failed [object Object]
+50 http fetch POST 404 https://registry.npmmirror.com/-/npm/v1/security/audits/quick 31ms
+51 verbose audit error HttpErrorGeneral: 404 Not Found - POST https://registry.npmmirror.com/-/npm/v1/security/audits/quick - [NOT_IMPLEMENTED] /-/npm/v1/security/* not implemented yet
+51 verbose audit error     at C:\ProgramData\nvm\v22.23.2\node_modules\npm\node_modules\npm-registry-fetch\lib\check-response.js:103:15
+51 verbose audit error     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+51 verbose audit error     at async [getReport] (C:\ProgramData\nvm\v22.23.2\node_modules\npm\node_modules\@npmcli\arborist\lib\audit-report.js:336:21)
+51 verbose audit error     at async AuditReport.run (C:\ProgramData\nvm\v22.23.2\node_modules\npm\node_modules\@npmcli\arborist\lib\audit-report.js:106:19) {
+51 verbose audit error   headers: [Object: null prototype] {
+51 verbose audit error     server: [ 'Tengine' ],
+51 verbose audit error     date: [ 'Mon, 31 Aug 2026 07:11:23 GMT' ],
+51 verbose audit error     'content-type': [ 'application/json' ],
+51 verbose audit error     'transfer-encoding': [ 'chunked' ],
+51 verbose audit error     connection: [ 'keep-alive' ],
+51 verbose audit error     'strict-transport-security': [ 'max-age=5184000' ],
+51 verbose audit error     via: [ 'kunlun2.cn8137[,404666]' ],
+51 verbose audit error     'timing-allow-origin': [ '*' ],
+51 verbose audit error     eagleid: [ 'dcb5a79617881602833112715e' ],
+51 verbose audit error     'x-fetch-attempts': [ '1' ]
+51 verbose audit error   },
+51 verbose audit error   statusCode: 404,
+51 verbose audit error   code: 'E404',
+51 verbose audit error   method: 'POST',
+51 verbose audit error   uri: 'https://registry.npmmirror.com/-/npm/v1/security/audits/quick',
+51 verbose audit error   body: {
+51 verbose audit error     error: '[NOT_IMPLEMENTED] /-/npm/v1/security/* not implemented yet'
+51 verbose audit error   },
+51 verbose audit error   pkgid: undefined
+51 verbose audit error }
+52 silly audit error [object Object]
+53 silly audit report null
+54 http fetch GET 200 https://cdn.npmmirror.com/packages/%40playwright/cli/0.1.18/cli-0.1.18.tgz 260ms (cache miss)
+55 http fetch GET 200 https://cdn.npmmirror.com/packages/playwright/1.63.0-alpha-2026-08-05/playwright-1.63.0-alpha-2026-08-05.tgz 370ms (cache miss)
+56 http fetch GET 200 https://cdn.npmmirror.com/packages/playwright-core/1.63.0-alpha-2026-08-05/playwright-core-1.63.0-alpha-2026-08-05.tgz 1446ms (cache miss)
+57 verbose cwd D:\workspace\code\harness\dsh-smart-scenario-router
+58 verbose os Windows_NT 10.0.26200
+59 verbose node v22.23.2
+60 verbose npm  v10.9.8
+61 notice
+61 notice New major version of npm available! 10.9.8 -> 12.0.2
+61 notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+61 notice To update run: npm install -g npm@12.0.2
+61 notice  { force: true, [Symbol(proc-log.meta)]: true }
+62 verbose exit 0
+63 info ok
