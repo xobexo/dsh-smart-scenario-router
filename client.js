@@ -136,7 +136,8 @@ window.__ModuleLoader__.load({
       return [snapshot, reload]
     }
     const LABELS = {
-      project_planning: '项目拆解 / 架构设计', coding: '代码编写 / 调试',
+      project_planning: '项目拆解 / 架构设计', plugin_discovery: '插件查找 / 工具推荐',
+       code_review: '代码审查', code_diff: '代码变更对比', coding: '代码编写 / 调试',
       reasoning: '复杂推理 / 科研 / Agent', daily: '日常对话 / 快速问答',
       fast: '极速高并发 / 批量抽取', multimodal: '多模态（图文输入）', long_context: '长文本 / 数据分析',
     }

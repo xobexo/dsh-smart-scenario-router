@@ -3,6 +3,9 @@ import { settingsNamespace } from '@deepseek-ai/dsh-settings'
 
 const ROUTES = {
   project_planning: ['deepseek-v4-pro-0813', 'glm-5.2', 'gpt-5.6-sol'],
+  plugin_discovery: ['deepseek-v4-flash-0731', 'glm-5.2', 'gpt-5.6-luna'],
+  code_review: ['deepseek-v4-pro-0813', 'glm-5.2', 'gpt-5.6-sol'],
+  code_diff: ['deepseek-v4-flash-0731', 'glm-5.2', 'gpt-5.6-luna'],
   coding: ['glm-5.2', 'deepseek-v4-pro-0813', 'gpt-5.6-sol'],
   reasoning: ['deepseek-v4-pro-0813', 'qwen3.8-max', 'gpt-5.6-sol'],
   daily: ['deepseek-v4-flash-0731', 'glm-5.2', 'gpt-5.6-luna'],
@@ -13,6 +16,9 @@ const ROUTES = {
 
 const LABELS = {
   project_planning: '项目拆解 / 架构设计',
+  plugin_discovery: '插件查找 / 工具推荐',
+  code_review: '代码审查',
+  code_diff: '代码变更对比',
   coding: '代码编写 / 调试',
   reasoning: '复杂推理 / 科研 / Agent',
   daily: '日常对话 / 快速问答',
@@ -72,13 +78,25 @@ function userText(messages) {
   return { text, image }
 }
 
-function classify(messages) {
+export function classify(messages) {
   const input = userText(messages)
   if (input.image || /图片|图像|截图|照片|图文|视觉|看图|识图|OCR|扫描件|表格图片/.test(input.text)) return { tag: 'multimodal', confidence: 0.98, judged: false }
   if (input.text.length > 12000) return { tag: 'long_context', confidence: 0.96, judged: false }
+  const lower = input.text.toLowerCase()
+
+  // Specific intents win over broad words such as “代码” or “帮我”.
+  const pluginIntent = /找(一个|个)?插件|插件(推荐|查找|搜索|列表)|推荐(一个|个)?插件|有没有(适合|支持|能用的)?插件|工具(推荐|查找|搜索)|扩展(推荐|查找)|安装插件|plugin|extension/.test(lower)
+  if (pluginIntent) return { tag: 'plugin_discovery', confidence: 0.96, judged: false }
+
+  const diffIntent = /当前(代码)?(更改|改动|修改)|工作区(修改|变更)|git\s*(diff|变更|修改)|diff|对比(代码|修改|改动)|查看(当前)?(代码)?变更|显示(当前)?修改/.test(lower)
+  if (diffIntent) return { tag: 'code_diff', confidence: 0.96, judged: false }
+
+  const reviewIntent = /代码审查|审查(代码|变更)|检查(代码|改动)|review(代码|变更)?|提交前检查|找问题|潜在问题|安全漏洞|代码质量|最佳实践/.test(lower)
+  if (reviewIntent) return { tag: 'code_review', confidence: 0.94, judged: false }
+
   const rules = [
     ['project_planning', ['架构', '项目拆解', '技术方案', '系统设计', '模块拆分', '里程碑', '规划']],
-    ['coding', ['代码', '编写', '调试', 'bug', '报错', '函数', '接口', 'typescript', 'javascript', 'python', '重构', '前端', '后端', '数据库', '测试用例']],
+    ['coding', ['编写', '调试', 'bug', '报错', '函数', '接口', 'typescript', 'javascript', 'python', '重构', '前端', '后端', '数据库', '测试用例']],
     ['reasoning', ['推理', '科研', '论文', '证明', '分析原因', 'agent', '实验设计', '复杂']],
     ['fast', ['批量', '抽取', '高并发', '极速', '快速分类', '大量文本']],
     ['multimodal', ['图片', '图像', '截图', '照片', '图文', '视觉', '看图']],
@@ -87,7 +105,6 @@ function classify(messages) {
   ]
   let best = 'daily'
   let bestScore = 0
-  const lower = input.text.toLowerCase()
   for (const rule of rules) {
     let score = 0
     for (const word of rule[1]) if (lower.includes(word.toLowerCase())) score += word.length > 3 ? 2 : 1
@@ -243,7 +260,7 @@ export function apply(ctx, config) {
     if (!provider) return null
     try {
       let output = ''
-      for await (const chunk of llm.stream({ provider, model, messages, system: '只输出一个场景标签，不要解释。可选值：project_planning, coding, reasoning, daily, fast, multimodal, long_context。', temperature: 0, maxTokens: 12, signal })) {
+      for await (const chunk of llm.stream({ provider, model, messages, system: '只输出一个场景标签，不要解释。可选值：project_planning, plugin_discovery, code_review, code_diff, coding, reasoning, daily, fast, multimodal, long_context。插件查找/工具推荐选 plugin_discovery；查看 Git diff 或当前修改选 code_diff；分析代码质量、漏洞和潜在问题选 code_review；只有编写、调试、修复代码才选 coding。', temperature: 0, maxTokens: 12, signal })) {
         if (chunk && chunk.type === 'text-delta') output += chunk.text || ''
         if (chunk && chunk.type === 'finish') break
       }

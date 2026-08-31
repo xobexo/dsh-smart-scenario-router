@@ -6,6 +6,9 @@
 
 - 根据消息内容识别以下场景：
   - 项目拆解 / 架构设计
+  - 插件查找 / 工具推荐
+  - 代码审查
+  - 代码变更对比
   - 代码编写 / 调试
   - 复杂推理 / 科研 / Agent
   - 日常对话 / 快速问答
@@ -92,6 +95,9 @@ npx -y @deepseek-ai/dsh plugin --profile web remove dsh-smart-scenario-router
 | 场景 | 候选模型顺序 |
 | --- | --- |
 | `project_planning` | `deepseek-v4-pro-0813` → `glm-5.2` → `gpt-5.6-sol` |
+| `plugin_discovery` | `deepseek-v4-flash-0731` → `glm-5.2` → `gpt-5.6-luna` |
+| `code_review` | `deepseek-v4-pro-0813` → `glm-5.2` → `gpt-5.6-sol` |
+| `code_diff` | `deepseek-v4-flash-0731` → `glm-5.2` → `gpt-5.6-luna` |
 | `coding` | `glm-5.2` → `deepseek-v4-pro-0813` → `gpt-5.6-sol` |
 | `reasoning` | `deepseek-v4-pro-0813` → `qwen3.8-max` → `gpt-5.6-sol` |
 | `daily` | `deepseek-v4-flash-0731` → `glm-5.2` → `gpt-5.6-luna` |
@@ -106,7 +112,7 @@ npx -y @deepseek-ai/dsh plugin --profile web remove dsh-smart-scenario-router
 1. 插件读取当前会话中的用户消息。
 2. 如果包含图片，或消息明确涉及图片内容，路由到 `multimodal`。
 3. 如果文本很长，路由到 `long_context`。
-4. 其他消息根据关键词匹配场景；置信度低于阈值时，调用裁判模型再次判断。裁判模型可在设置页选择，留空时自动从已配置模型中挑选。
+4. 其他消息先按高优先级意图匹配：插件查找 / 工具推荐进入 `plugin_discovery`，Git diff / 当前修改进入 `code_diff`，代码质量、漏洞和潜在问题分析进入 `code_review`；只有编写、调试或修复代码才进入 `coding`。剩余消息再根据关键词匹配场景；置信度低于阈值时，调用裁判模型再次判断。裁判模型可在设置页选择，留空时自动从已配置模型中挑选。
 5. 插件检查候选模型是否可用，并选择第一个可用模型。
 6. 请求失败时，继续尝试当前场景候选链中的下一个模型。
 
