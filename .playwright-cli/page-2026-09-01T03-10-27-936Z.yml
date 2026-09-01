@@ -1,0 +1,126 @@
+- generic [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - button "新建会话" [ref=e9] [cursor=pointer]
+        - button "收起侧边栏" [ref=e38] [cursor=pointer]
+      - button "新建会话" [ref=e41] [cursor=pointer]:
+        - generic [ref=e44]: 新会话
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: 工作区
+          - generic [ref=e51]:
+            - button "搜索会话" [ref=e52] [cursor=pointer]
+            - textbox "搜索会话…"
+          - generic [ref=e56]:
+            - button "视图选项" [ref=e58] [cursor=pointer]
+            - button "添加工作区" [ref=e61] [cursor=pointer]
+        - tree "会话" [ref=e67]:
+          - generic [ref=e113]:
+            - treeitem "智能配置路由插件" [expanded] [ref=e115] [cursor=pointer]
+            - treeitem "等待回答 开发一个金融系统 刚刚" [selected] [ref=e381] [cursor=pointer]:
+              - generic [ref=e124]: 等待回答
+              - generic [ref=e125]: 开发一个金融系统
+              - generic [ref=e285]: 刚刚
+            - treeitem "进行中 开发一个消费者权益系统 17:48 1分钟" [ref=e286] [cursor=pointer]:
+              - generic [ref=e128]: 进行中
+              - generic [ref=e139]: 开发一个消费者权益系统 17:48
+              - generic [ref=e140]: 1分钟
+            - treeitem "开发一个金融系统 7分钟" [ref=e494] [cursor=pointer]:
+              - generic [ref=e144]: 开发一个金融系统
+              - generic [ref=e145]: 7分钟
+            - treeitem "开发一个金融系统 9分钟" [ref=e384] [cursor=pointer]:
+              - generic [ref=e149]: 开发一个金融系统
+              - generic [ref=e150]: 9分钟
+            - treeitem "你是谁 1小时" [ref=e152] [cursor=pointer]:
+              - generic [ref=e154]: 你是谁
+              - generic [ref=e155]: 1小时
+            - button "展开其余 10 个会话" [ref=e156] [cursor=pointer]
+          - treeitem "日常" [ref=e159] [cursor=pointer]
+          - treeitem "浮标" [ref=e167] [cursor=pointer]
+          - treeitem "D1" [ref=e175] [cursor=pointer]
+          - treeitem "D2" [ref=e183] [cursor=pointer]
+          - treeitem "D2-web" [ref=e191] [cursor=pointer]
+          - treeitem "未分组" [ref=e198] [cursor=pointer]
+      - button "设置" [ref=e72] [cursor=pointer]
+    - generic [ref=e81]:
+      - banner [ref=e298]:
+        - generic [ref=e299]:
+          - generic [ref=e300]:
+            - navigation "会话层级" [ref=e301]:
+              - button "开发一个金融系统" [disabled] [ref=e303]
+            - generic "功能完整的编码 Agent，支持文件编辑、Shell、文件与网页检索、Skills、计划、目标、子代理和工作流。" [ref=e306]: 标准模式
+          - button "Session log" [ref=e314] [cursor=pointer]
+        - tablist [ref=e318]:
+          - tab "对话" [selected] [ref=e319] [cursor=pointer]
+          - tab "轨迹" [ref=e320] [cursor=pointer]
+      - generic [ref=e82]:
+        - generic [ref=e326]:
+          - generic [ref=e329]:
+            - generic [ref=e330]: 开发一个金融系统
+            - generic [ref=e333]:
+              - generic [ref=e334]: 11:09
+              - button "复制" [ref=e335] [cursor=pointer]
+          - button "上下文注入 @deepseek-ai/dsh-system-prompt" [ref=e341] [cursor=pointer]:
+            - generic [ref=e350]: 上下文注入
+            - generic [ref=e352]: "@deepseek-ai/dsh-system-prompt"
+          - button "上下文注入 skill-catalog" [ref=e356] [cursor=pointer]:
+            - generic [ref=e365]: 上下文注入
+            - generic [ref=e367]: skill-catalog
+          - generic [ref=e388]:
+            - button "Think The user wants to develop a financial system. This is a very broad request. Let me think about what to do here." [ref=e391] [cursor=pointer]:
+              - generic [ref=e399]: Think
+              - generic [ref=e401]: The user wants to develop a financial system. This is a very broad request. Let me think about what to do here.
+            - generic [ref=e402]:
+              - paragraph [ref=e403]: "\"开发一个金融系统\"是一个非常宽泛的需求。金融系统的范围可以从简单的个人记账应用到复杂的核心银行系统。为了能帮你做出合适的设计和实现,我需要先确认几个关键方向。"
+              - paragraph [ref=e404]: "让我先了解一下你的具体需求:"
+          - generic [ref=e409]:
+            - generic [ref=e410]: 运行中
+            - button "提问 等待回答" [ref=e412] [cursor=pointer]:
+              - generic [ref=e421]: 提问
+              - generic [ref=e423]: 等待回答
+          - status [ref=e368]:
+            - text: Deep diving...
+            - generic [ref=e424]: 46秒
+        - region [ref=e521]:
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - generic [ref=e429]: 开发范围
+              - heading "你期望这次开发的范围和深度是?" [level=2] [ref=e522]
+            - generic [ref=e431]:
+              - button "收起问题卡片" [expanded] [ref=e432] [cursor=pointer]
+              - button "放弃整组问题" [ref=e435] [cursor=pointer]
+          - radiogroup [ref=e440]:
+            - radio "最小可用原型 (MVP)" [ref=e523] [cursor=pointer]:
+              - generic [ref=e524]: "1"
+              - generic [ref=e526]:
+                - generic [ref=e527]: 最小可用原型 (MVP)
+                - generic [ref=e528]: 核心功能可运行的雏形,快速验证概念,约几百行代码
+            - radio "功能完整 Demo" [ref=e529] [cursor=pointer]:
+              - generic [ref=e530]: "2"
+              - generic [ref=e532]:
+                - generic [ref=e533]: 功能完整 Demo
+                - generic [ref=e534]: 包含核心模块和基本UI的演示系统,可本地运行体验
+            - radio "生产级架构设计" [ref=e535] [cursor=pointer]:
+              - generic [ref=e536]: "3"
+              - generic [ref=e538]:
+                - generic [ref=e539]: 生产级架构设计
+                - generic [ref=e540]: 完整的架构设计、模块划分、关键代码实现,面向生产部署
+            - textbox "输入你的答案" [ref=e470]
+          - generic [ref=e471]:
+            - generic [ref=e472]:
+              - button "上一题" [ref=e473] [cursor=pointer]
+              - generic [ref=e476]: 3 / 4
+              - button "下一题" [active] [ref=e477] [cursor=pointer]
+            - status [ref=e480]
+            - generic [ref=e481]:
+              - button "跳过本题" [ref=e482] [cursor=pointer]
+              - button "下一题" [disabled] [ref=e483]
+    - generic [ref=e259]:
+      - generic [ref=e260]:
+        - generic: 详情
+        - button "关闭详情" [ref=e261] [cursor=pointer]
+      - generic [ref=e264]: 点击消息流中的工具行查看详情
+  - generic [ref=e265]:
+    - button "展开底部面板" [ref=e266] [cursor=pointer]
+    - button "展开侧边栏" [ref=e270] [cursor=pointer]
