@@ -1,6 +1,6 @@
 {
   "name": "dsh-smart-scenario-router",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Persistent DeepSeek Harness scenario router with settings-driven model dropdowns, fallback routing, and Web UI settings.",
   "repository": {
     "type": "git",
@@ -10,6 +10,10 @@
   "license": "MIT",
   "type": "module",
   "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "walk": "node walk-scenarios.js"
+  },
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
