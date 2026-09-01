@@ -549,7 +549,10 @@ export function apply(ctx, config) {
     if (usableRoute !== selected) publish(route.result, usableRoute)
     route.started = true
     route.locked = true
-    return { ...config, provider: usableRoute.provider || config.provider, model: usableRoute.model }
+    // Match DSH's native model selector: a routed model must not inherit
+    // reasoning settings prepared for the composer's previous model.
+    const { reasoningEffort: _inheritedEffort, ...withoutInheritedEffort } = config
+    return { ...withoutInheritedEffort, provider: usableRoute.provider || config.provider, model: usableRoute.model }
   })
   function isRetryableFailure(failure) {
     const code = String(failure && failure.code || '').toUpperCase()
