@@ -1,0 +1,129 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - button "新建会话" [ref=e9] [cursor=pointer]
+        - button "收起侧边栏" [ref=e38] [cursor=pointer]
+      - button "新建会话" [ref=e41] [cursor=pointer]:
+        - generic [ref=e44]: 新会话
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: 工作区
+          - generic [ref=e51]:
+            - button "搜索会话" [ref=e52] [cursor=pointer]
+            - textbox "搜索会话…"
+          - generic [ref=e56]:
+            - button "视图选项" [ref=e58] [cursor=pointer]
+            - button "添加工作区" [ref=e61] [cursor=pointer]
+        - tree "会话" [ref=e67]:
+          - treeitem "智能配置路由插件" [ref=e115] [cursor=pointer]
+          - generic [ref=e121]:
+            - treeitem "日常" [expanded] [ref=e123] [cursor=pointer]
+            - treeitem "等待回答 开发一个金融系统 刚刚" [selected] [ref=e351] [cursor=pointer]:
+              - generic [ref=e132]: 等待回答
+              - generic [ref=e133]: 开发一个金融系统
+              - generic [ref=e266]: 刚刚
+            - treeitem "金融系统开发 7分钟" [ref=e354] [cursor=pointer]:
+              - generic [ref=e137]: 金融系统开发
+              - generic [ref=e138]: 7分钟
+            - treeitem "开发一个金融系统 9分钟" [ref=e454] [cursor=pointer]:
+              - generic [ref=e142]: 开发一个金融系统
+              - generic [ref=e143]: 9分钟
+            - treeitem "你好 1小时" [ref=e145] [cursor=pointer]:
+              - generic [ref=e147]: 你好
+              - generic [ref=e148]: 1小时
+            - treeitem "你好 1小时" [ref=e150] [cursor=pointer]:
+              - generic [ref=e152]: 你好
+              - generic [ref=e153]: 1小时
+            - button "展开其余 38 个会话" [ref=e154] [cursor=pointer]
+          - treeitem "浮标" [ref=e157] [cursor=pointer]
+          - treeitem "D1" [ref=e165] [cursor=pointer]
+          - treeitem "D2" [ref=e173] [cursor=pointer]
+          - treeitem "D2-web" [ref=e181] [cursor=pointer]
+          - treeitem "未分组" [ref=e188] [cursor=pointer]
+      - button "设置" [ref=e72] [cursor=pointer]
+    - generic [ref=e81]:
+      - banner [ref=e268]:
+        - generic [ref=e269]:
+          - generic [ref=e270]:
+            - navigation "会话层级" [ref=e271]:
+              - button "开发一个金融系统" [disabled] [ref=e273]
+            - generic "功能完整的编码 Agent，支持文件编辑、Shell、文件与网页检索、Skills、计划、目标、子代理和工作流。" [ref=e276]: 标准模式
+          - button "Session log" [ref=e284] [cursor=pointer]
+        - tablist [ref=e288]:
+          - tab "对话" [selected] [ref=e289] [cursor=pointer]
+          - tab "轨迹" [ref=e290] [cursor=pointer]
+      - generic [ref=e82]:
+        - generic [ref=e296]:
+          - generic [ref=e299]:
+            - generic [ref=e300]: 开发一个金融系统
+            - generic [ref=e303]:
+              - generic [ref=e304]: 10:35
+              - button "复制" [ref=e305] [cursor=pointer]
+          - button "上下文注入 @deepseek-ai/dsh-system-prompt" [ref=e311] [cursor=pointer]:
+            - generic [ref=e320]: 上下文注入
+            - generic [ref=e322]: "@deepseek-ai/dsh-system-prompt"
+          - button "上下文注入 skill-catalog" [ref=e326] [cursor=pointer]:
+            - generic [ref=e335]: 上下文注入
+            - generic [ref=e337]: skill-catalog
+          - generic [ref=e358]:
+            - button "Think The user says \"开发一个金融系统\" (Develop a financial system). This is a very broad request. I need to clarify what kind of financial system they want, because \"金融系统\" is extremely ambiguous — could be a trading system, accounting, payment processing, risk management, portfolio management, etc." [ref=e361] [cursor=pointer]:
+              - generic [ref=e369]: Think
+              - generic [ref=e371]: The user says "开发一个金融系统" (Develop a financial system). This is a very broad request. I need to clarify what kind of financial system they want, because "金融系统" is extremely ambiguous — could be a trading system, accounting, payment processing, risk management, portfolio management, etc.
+            - paragraph [ref=e373]: 开发一个"金融系统"范围很广，我需要先确认几个关键点，才能做出符合你预期的东西，而不是凭空猜一个方向。
+          - generic [ref=e378]:
+            - generic [ref=e379]: 运行中
+            - button "提问 等待回答" [ref=e381] [cursor=pointer]:
+              - generic [ref=e390]: 提问
+              - generic [ref=e392]: 等待回答
+          - status [ref=e338]:
+            - text: Deep diving...
+            - generic [ref=e393]: 47秒
+        - region [ref=e455]:
+          - generic [ref=e396]:
+            - generic [ref=e397]:
+              - generic [ref=e398]: 技术栈
+              - heading "你希望用什么技术栈实现？" [level=2] [ref=e456]
+            - generic [ref=e400]:
+              - button "收起问题卡片" [expanded] [ref=e401] [cursor=pointer]
+              - button "放弃整组问题" [ref=e404] [cursor=pointer]
+          - radiogroup [ref=e409]:
+            - radio "Python + FastAPI + SQLite" [ref=e457] [cursor=pointer]:
+              - generic [ref=e458]: "1"
+              - generic [ref=e460]:
+                - generic [ref=e461]: Python + FastAPI + SQLite
+                - generic [ref=e462]: 推荐
+                - generic [ref=e463]: 快速可运行，含 API 和轻量数据库，后续易扩展
+            - radio "Node.js + Express + SQLite" [ref=e464] [cursor=pointer]:
+              - generic [ref=e465]: "2"
+              - generic [ref=e467]:
+                - generic [ref=e468]: Node.js + Express + SQLite
+                - generic [ref=e469]: JavaScript 全栈，前后端同语言
+            - radio "Python 命令行/脚本原型" [ref=e470] [cursor=pointer]:
+              - generic [ref=e471]: "3"
+              - generic [ref=e473]:
+                - generic [ref=e474]: Python 命令行/脚本原型
+                - generic [ref=e475]: 先做核心逻辑，无 Web 界面
+            - radio "你有指定技术栈" [ref=e476] [cursor=pointer]:
+              - generic [ref=e477]: "4"
+              - generic [ref=e479]:
+                - generic [ref=e480]: 你有指定技术栈
+                - generic [ref=e481]: 在补充说明里告诉我
+            - textbox "输入你的答案" [ref=e440]
+          - generic [ref=e441]:
+            - generic [ref=e442]:
+              - button "上一题" [ref=e443] [cursor=pointer]
+              - generic [ref=e446]: 2 / 3
+              - button "下一题" [ref=e447] [cursor=pointer]
+            - status [ref=e450]
+            - generic [ref=e451]:
+              - button "跳过本题" [ref=e452] [cursor=pointer]
+              - button "下一题" [disabled] [ref=e453]
+    - generic [ref=e240]:
+      - generic [ref=e241]:
+        - generic: 详情
+        - button "关闭详情" [ref=e242] [cursor=pointer]
+      - generic [ref=e245]: 点击消息流中的工具行查看详情
+  - generic [ref=e246]:
+    - button "展开底部面板" [ref=e247] [cursor=pointer]
+    - button "展开侧边栏" [ref=e251] [cursor=pointer]

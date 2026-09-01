@@ -520,6 +520,11 @@ export function apply(ctx, config) {
     if (!route || !selected) return config
     if (route.retrying) {
       route.retrying = false
+    } else if (route.started) {
+      // DSH persists the selected provider/model and prepared adapter state in
+      // the session request header. Tool-loop steps must pass that config
+      // through unchanged; rewriting it here can break tool-call replay.
+      return config
     } else if (!isDefaultConfig(config) && config.model && (config.model !== selected.model || (config.provider && selected.provider && config.provider !== selected.provider))) {
       // Keep the host model selector first, while preserving configured
       // fallbacks for upstream failures on later tool-loop steps.

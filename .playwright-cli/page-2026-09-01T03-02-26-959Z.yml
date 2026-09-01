@@ -1,0 +1,129 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - button "新建会话" [ref=e9] [cursor=pointer]
+        - button "收起侧边栏" [ref=e38] [cursor=pointer]
+      - button "新建会话" [ref=e41] [cursor=pointer]:
+        - generic [ref=e44]: 新会话
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: 工作区
+          - generic [ref=e51]:
+            - button "搜索会话" [ref=e52] [cursor=pointer]
+            - textbox "搜索会话…"
+          - generic [ref=e56]:
+            - button "视图选项" [ref=e58] [cursor=pointer]
+            - button "添加工作区" [ref=e61] [cursor=pointer]
+        - tree "会话" [ref=e67]:
+          - generic [ref=e113]:
+            - treeitem "智能配置路由插件" [expanded] [ref=e115] [cursor=pointer]
+            - treeitem "等待回答 开发一个金融系统 1分钟" [selected] [ref=e479] [cursor=pointer]:
+              - generic [ref=e124]: 等待回答
+              - generic [ref=e125]: 开发一个金融系统
+              - generic [ref=e276]: 1分钟
+            - treeitem "你是谁 1小时" [ref=e127] [cursor=pointer]:
+              - generic [ref=e129]: 你是谁
+              - generic [ref=e130]: 1小时
+            - treeitem "你好 1小时" [ref=e132] [cursor=pointer]:
+              - generic [ref=e134]: 你好
+              - generic [ref=e135]: 1小时
+            - treeitem "进行中 开发一个消费者权益系统 17:48 2分钟" [ref=e480] [cursor=pointer]:
+              - generic [ref=e138]: 进行中
+              - generic [ref=e149]: 开发一个消费者权益系统 17:48
+              - generic [ref=e150]: 2分钟
+            - treeitem "Go接口开发时插件调用异常分析 17小时" [ref=e152] [cursor=pointer]:
+              - generic [ref=e154]: Go接口开发时插件调用异常分析
+              - generic [ref=e155]: 17小时
+            - button "展开其余 8 个会话" [ref=e156] [cursor=pointer]
+          - treeitem "日常" [ref=e159] [cursor=pointer]
+          - treeitem "浮标" [ref=e167] [cursor=pointer]
+          - treeitem "D1" [ref=e175] [cursor=pointer]
+          - treeitem "D2" [ref=e183] [cursor=pointer]
+          - treeitem "D2-web" [ref=e191] [cursor=pointer]
+          - treeitem "未分组" [ref=e198] [cursor=pointer]
+      - button "设置" [ref=e72] [cursor=pointer]
+    - generic [ref=e81]:
+      - banner [ref=e288]:
+        - generic [ref=e289]:
+          - generic [ref=e290]:
+            - navigation "会话层级" [ref=e291]:
+              - button "开发一个金融系统" [disabled] [ref=e293]
+            - generic "功能完整的编码 Agent，支持文件编辑、Shell、文件与网页检索、Skills、计划、目标、子代理和工作流。" [ref=e296]: 标准模式
+          - button "Session log" [ref=e304] [cursor=pointer]
+        - tablist [ref=e308]:
+          - tab "对话" [selected] [ref=e309] [cursor=pointer]
+          - tab "轨迹" [ref=e310] [cursor=pointer]
+      - generic [ref=e82]:
+        - generic [ref=e316]:
+          - generic [ref=e319]:
+            - generic [ref=e320]: 开发一个金融系统
+            - generic [ref=e323]:
+              - generic [ref=e324]: 11:00
+              - button "复制" [ref=e325] [cursor=pointer]
+          - button "上下文注入 @deepseek-ai/dsh-system-prompt" [ref=e331] [cursor=pointer]:
+            - generic [ref=e340]: 上下文注入
+            - generic [ref=e342]: "@deepseek-ai/dsh-system-prompt"
+          - button "上下文注入 skill-catalog" [ref=e346] [cursor=pointer]:
+            - generic [ref=e355]: 上下文注入
+            - generic [ref=e357]: skill-catalog
+          - generic [ref=e378]:
+            - button "Think 用户说\"开发一个金融系统\"（Develop a financial system）。这是一个非常宽泛的请求，我需要更多信息才能开始。" [ref=e381] [cursor=pointer]:
+              - generic [ref=e389]: Think
+              - generic [ref=e391]: 用户说"开发一个金融系统"（Develop a financial system）。这是一个非常宽泛的请求，我需要更多信息才能开始。
+            - paragraph [ref=e393]: "\"开发一个金融系统\"这个需求范围非常广，在开始之前我需要了解一些关键信息来制定合适的方案。让我问几个问题："
+          - generic [ref=e398]:
+            - generic [ref=e399]: 运行中
+            - button "提问 等待回答" [ref=e401] [cursor=pointer]:
+              - generic [ref=e410]: 提问
+              - generic [ref=e412]: 等待回答
+          - status [ref=e358]:
+            - text: Deep diving...
+            - generic [ref=e413]: 1分31秒
+        - region [ref=e491]:
+          - generic [ref=e416]:
+            - generic [ref=e417]:
+              - generic [ref=e418]: 技术栈
+              - heading "你倾向于使用什么技术栈？" [level=2] [ref=e492]
+            - generic [ref=e420]:
+              - button "收起问题卡片" [expanded] [ref=e421] [cursor=pointer]
+              - button "放弃整组问题" [ref=e424] [cursor=pointer]
+          - radiogroup [ref=e429]:
+            - radio "Java Spring Boot" [ref=e493] [cursor=pointer]:
+              - generic [ref=e494]: "1"
+              - generic [ref=e496]:
+                - generic [ref=e497]: Java Spring Boot
+                - generic [ref=e498]: 企业级后端，适合高并发金融场景，生态成熟
+            - radio "Node.js/TypeScript" [ref=e499] [cursor=pointer]:
+              - generic [ref=e500]: "2"
+              - generic [ref=e502]:
+                - generic [ref=e503]: Node.js/TypeScript
+                - generic [ref=e504]: 前后端统一 TS，开发快，适合中小型系统
+            - radio "Python/FastAPI" [ref=e505] [cursor=pointer]:
+              - generic [ref=e506]: "3"
+              - generic [ref=e508]:
+                - generic [ref=e509]: Python/FastAPI
+                - generic [ref=e510]: 灵活高效，适合数据分析与快速原型
+            - radio "你来推荐" [ref=e511] [cursor=pointer]:
+              - generic [ref=e512]: "4"
+              - generic [ref=e514]:
+                - generic [ref=e515]: 你来推荐
+                - generic [ref=e516]: 根据系统类型和需求，由我来推荐最合适的技术栈
+            - textbox "输入你的答案" [ref=e465]
+          - generic [ref=e466]:
+            - generic [ref=e467]:
+              - button "上一题" [ref=e468] [cursor=pointer]
+              - generic [ref=e471]: 2 / 3
+              - button "下一题" [ref=e472] [cursor=pointer]
+            - status [ref=e475]
+            - generic [ref=e476]:
+              - button "跳过本题" [ref=e477] [cursor=pointer]
+              - button "下一题" [disabled] [ref=e478]
+    - generic [ref=e250]:
+      - generic [ref=e251]:
+        - generic: 详情
+        - button "关闭详情" [ref=e252] [cursor=pointer]
+      - generic [ref=e255]: 点击消息流中的工具行查看详情
+  - generic [ref=e256]:
+    - button "展开底部面板" [ref=e257] [cursor=pointer]
+    - button "展开侧边栏" [ref=e261] [cursor=pointer]

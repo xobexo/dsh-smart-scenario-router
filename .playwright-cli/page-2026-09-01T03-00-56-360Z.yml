@@ -1,0 +1,96 @@
+- generic [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - button "新建会话" [ref=e9] [cursor=pointer]
+        - button "收起侧边栏" [ref=e38] [cursor=pointer]
+      - button "新建会话" [ref=e41] [cursor=pointer]:
+        - generic [ref=e44]: 新会话
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: 工作区
+          - generic [ref=e51]:
+            - button "搜索会话" [ref=e52] [cursor=pointer]
+            - textbox "搜索会话…"
+          - generic [ref=e56]:
+            - button "视图选项" [ref=e58] [cursor=pointer]
+            - button "添加工作区" [ref=e61] [cursor=pointer]
+        - tree "会话" [ref=e67]:
+          - generic [ref=e113]:
+            - treeitem "智能配置路由插件" [expanded] [ref=e115] [cursor=pointer]
+            - treeitem "进行中 开发一个金融系统 刚刚" [selected] [ref=e265] [cursor=pointer]:
+              - generic [ref=e124]: 进行中
+              - generic [ref=e125]: 开发一个金融系统
+              - generic [ref=e276]: 刚刚
+            - treeitem "你是谁 1小时" [ref=e127] [cursor=pointer]:
+              - generic [ref=e129]: 你是谁
+              - generic [ref=e130]: 1小时
+            - treeitem "你好 1小时" [ref=e132] [cursor=pointer]:
+              - generic [ref=e134]: 你好
+              - generic [ref=e135]: 1小时
+            - treeitem "进行中 开发一个消费者权益系统 17:48 刚刚" [ref=e137] [cursor=pointer]:
+              - generic [ref=e138]: 进行中
+              - generic [ref=e149]: 开发一个消费者权益系统 17:48
+              - generic [ref=e150]: 刚刚
+            - treeitem "Go接口开发时插件调用异常分析 17小时" [ref=e152] [cursor=pointer]:
+              - generic [ref=e154]: Go接口开发时插件调用异常分析
+              - generic [ref=e155]: 17小时
+            - button "展开其余 8 个会话" [ref=e156] [cursor=pointer]
+          - treeitem "日常" [ref=e159] [cursor=pointer]
+          - treeitem "浮标" [ref=e167] [cursor=pointer]
+          - treeitem "D1" [ref=e175] [cursor=pointer]
+          - treeitem "D2" [ref=e183] [cursor=pointer]
+          - treeitem "D2-web" [ref=e191] [cursor=pointer]
+          - treeitem "未分组" [ref=e198] [cursor=pointer]
+      - button "设置" [ref=e72] [cursor=pointer]
+    - generic [ref=e81]:
+      - banner [ref=e288]:
+        - generic [ref=e289]:
+          - generic [ref=e290]:
+            - navigation "会话层级" [ref=e291]:
+              - button "开发一个金融系统" [disabled] [ref=e293]
+            - generic "功能完整的编码 Agent，支持文件编辑、Shell、文件与网页检索、Skills、计划、目标、子代理和工作流。" [ref=e296]: 标准模式
+          - button "Session log" [ref=e304] [cursor=pointer]
+        - tablist [ref=e308]:
+          - tab "对话" [selected] [ref=e309] [cursor=pointer]
+          - tab "轨迹" [ref=e310] [cursor=pointer]
+      - generic [ref=e82]:
+        - generic [ref=e316]:
+          - generic [ref=e319]:
+            - generic [ref=e320]: 开发一个金融系统
+            - generic [ref=e323]:
+              - generic [ref=e324]: 11:00
+              - button "复制" [ref=e325] [cursor=pointer]
+          - button "上下文注入 @deepseek-ai/dsh-system-prompt" [ref=e331] [cursor=pointer]:
+            - generic [ref=e340]: 上下文注入
+            - generic [ref=e342]: "@deepseek-ai/dsh-system-prompt"
+          - button "上下文注入 skill-catalog" [ref=e346] [cursor=pointer]:
+            - generic [ref=e355]: 上下文注入
+            - generic [ref=e357]: skill-catalog
+          - status [ref=e358]: Deep diving...
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - textbox "给智能体发消息" [active] [ref=e359]
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - button "命令" [ref=e218] [cursor=pointer]
+                - button "访问模式，当前：Workspace Write" [ref=e223] [cursor=pointer]:
+                  - generic [ref=e231]: Workspace Write
+              - generic [ref=e111]:
+                - button "选择技能" [ref=e237] [cursor=pointer]
+                - button "选择模型，当前 deepseek-v4-pro-0813" [ref=e242] [cursor=pointer]:
+                  - generic [ref=e243]: deepseek-v4-pro-0813
+                - button "停止生成" [ref=e360] [cursor=pointer]
+          - generic [ref=e363]:
+            - generic "当前识别场景" [ref=e364]: 日常对话 / 快速问答
+            - generic "当前路由模型" [ref=e366]: gpt-5.6-luna
+            - generic "GPT 备用链路" [ref=e368]: 备用
+            - button "覆盖" [ref=e370] [cursor=pointer]
+    - generic [ref=e250]:
+      - generic [ref=e251]:
+        - generic: 详情
+        - button "关闭详情" [ref=e252] [cursor=pointer]
+      - generic [ref=e255]: 点击消息流中的工具行查看详情
+  - generic [ref=e256]:
+    - button "展开底部面板" [ref=e257] [cursor=pointer]
+    - button "展开侧边栏" [ref=e261] [cursor=pointer]

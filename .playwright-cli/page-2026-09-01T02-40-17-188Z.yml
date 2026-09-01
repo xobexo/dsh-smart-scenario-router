@@ -1,0 +1,89 @@
+- generic [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - button "新建会话" [ref=e9] [cursor=pointer]
+        - button "收起侧边栏" [ref=e38] [cursor=pointer]
+      - button "新建会话" [ref=e41] [cursor=pointer]:
+        - generic [ref=e44]: 新会话
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: 工作区
+          - generic [ref=e51]:
+            - button "搜索会话" [ref=e52] [cursor=pointer]
+            - textbox "搜索会话…"
+          - generic [ref=e56]:
+            - button "视图选项" [ref=e58] [cursor=pointer]
+            - button "添加工作区" [ref=e61] [cursor=pointer]
+        - tree "会话" [ref=e67]:
+          - generic [ref=e113]:
+            - treeitem "智能配置路由插件" [expanded] [ref=e115] [cursor=pointer]
+            - treeitem "新会话" [selected] [ref=e702] [cursor=pointer]
+            - treeitem "进行中 开发一个消费者权益系统 17:48 刚刚" [ref=e706] [cursor=pointer]:
+              - generic [ref=e707]: 进行中
+              - generic [ref=e718]: 开发一个消费者权益系统 17:48
+              - generic [ref=e719]: 刚刚
+            - treeitem "你是谁 1小时" [ref=e721] [cursor=pointer]:
+              - generic [ref=e723]: 你是谁
+              - generic [ref=e724]: 1小时
+            - treeitem "你好 1小时" [ref=e726] [cursor=pointer]:
+              - generic [ref=e728]: 你好
+              - generic [ref=e729]: 1小时
+            - treeitem "Go接口开发时插件调用异常分析 16小时" [ref=e731] [cursor=pointer]:
+              - generic [ref=e733]: Go接口开发时插件调用异常分析
+              - generic [ref=e734]: 16小时
+            - button "展开其余 8 个会话" [ref=e735] [cursor=pointer]
+          - generic [ref=e121]:
+            - treeitem "日常" [expanded] [ref=e123] [cursor=pointer]
+            - treeitem "金融系统开发 11分钟" [ref=e628] [cursor=pointer]:
+              - generic [ref=e137]: 金融系统开发
+              - generic [ref=e138]: 11分钟
+            - treeitem "开发一个金融系统 13分钟" [ref=e736] [cursor=pointer]:
+              - generic [ref=e142]: 开发一个金融系统
+              - generic [ref=e143]: 13分钟
+            - treeitem "你好 1小时" [ref=e145] [cursor=pointer]:
+              - generic [ref=e147]: 你好
+              - generic [ref=e148]: 1小时
+            - treeitem "你好 1小时" [ref=e150] [cursor=pointer]:
+              - generic [ref=e152]: 你好
+              - generic [ref=e153]: 1小时
+            - treeitem "你好 1小时" [ref=e738] [cursor=pointer]:
+              - generic [ref=e740]: 你好
+              - generic [ref=e741]: 1小时
+            - button "展开其余 37 个会话" [ref=e742] [cursor=pointer]
+          - treeitem "浮标" [ref=e157] [cursor=pointer]
+          - treeitem "D1" [ref=e165] [cursor=pointer]
+          - treeitem "D2" [ref=e173] [cursor=pointer]
+          - treeitem "D2-web" [ref=e181] [cursor=pointer]
+          - treeitem "未分组" [ref=e188] [cursor=pointer]
+      - button "设置" [ref=e72] [cursor=pointer]
+    - generic [ref=e748]:
+      - generic [ref=e751]:
+        - generic [ref=e756]: 探索未至之境
+        - generic [ref=e757]: 预览版
+      - generic [ref=e758]:
+        - button "选择工作区" [ref=e759] [cursor=pointer]:
+          - generic [ref=e763]: 智能配置路由插件
+        - button "标准模式" [ref=e768] [cursor=pointer]
+      - button "分支" [ref=e779] [cursor=pointer]:
+        - generic "main" [ref=e782]
+      - generic [ref=e787]:
+        - textbox "描述你想要构建的内容" [active] [ref=e790]
+        - generic [ref=e791]:
+          - generic [ref=e792]:
+            - button "命令" [ref=e793] [cursor=pointer]
+            - button "访问模式，当前：Workspace Write" [ref=e798] [cursor=pointer]:
+              - generic [ref=e806]: Workspace Write
+          - generic [ref=e810]:
+            - button "选择技能" [ref=e813] [cursor=pointer]
+            - button "选择模型，当前 deepseek-v4-pro-0813" [ref=e818] [cursor=pointer]:
+              - generic [ref=e819]: deepseek-v4-pro-0813
+            - button "发送消息" [disabled] [ref=e822]
+    - generic [ref=e825]:
+      - generic [ref=e826]:
+        - generic: 详情
+        - button "关闭详情" [ref=e827] [cursor=pointer]
+      - generic [ref=e830]: 点击消息流中的工具行查看详情
+  - generic [ref=e246]:
+    - button "展开底部面板" [ref=e247] [cursor=pointer]
+    - button "展开侧边栏" [ref=e251] [cursor=pointer]

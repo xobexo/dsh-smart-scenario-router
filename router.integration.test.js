@@ -107,6 +107,16 @@ test('[persisted] 会话持久化的非默认模型保持第一顺位', async ()
   assert.equal(fallback.model, 'glm-5.2', '持久化模型失败后应回到链上候选')
 })
 
+test('[tool-loop] 首轮选择 GLM 后，后续工具续轮透传 DSH 请求配置', async () => {
+  const h = await boot({ defaultSelection: { model: 'deepseek-v4-pro-0813', provider: 'test' } })
+  const agent = agentOf('tool-loop')
+  await h.fire('agent/pre-step', { agent, messages: userMessage('开发一个消费者权益系统'), signal: {} })
+  const first = await h.request(agent)
+  assert.deepEqual(first, { model: 'glm-5.2', provider: 'test' }, '首轮仍应由场景路由选择 GLM-5.2')
+  const continuation = await h.request(agent)
+  assert.deepEqual(continuation, { model: 'deepseek-v4-pro-0813', provider: 'test' }, '工具续轮不得再次覆盖 DSH 请求配置')
+})
+
 test('[retry-policy] 参数校验类失败不重试，直接透传且不切换模型', async () => {
   const h = await boot()
   const agent = agentOf('validation')
@@ -117,7 +127,7 @@ test('[retry-policy] 参数校验类失败不重试，直接透传且不切换�
   const outcome = await h.fire('agent/request-error', { agent, failure }, async () => 'NO-RETRY')
   assert.equal(outcome, 'NO-RETRY', '校验错误不应重试')
   const again = await h.request(agent)
-  assert.equal(again.model, 'glm-5.2', '未发生回退，仍是原模型')
+  assert.equal(again.model, COMPOSER_DEFAULT.model, '未发生回退，后续请求应透传 DSH 配置')
 })
 
 test('[migration] 旧版持久化（无 schemaVersion）自动升级为新默认映射', async () => {
